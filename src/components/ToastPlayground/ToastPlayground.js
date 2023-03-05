@@ -43,22 +43,24 @@ function ToastPlayground() {
           >
 
 
-            {VARIANT_OPTIONS.map((item, index) => (
+            {VARIANT_OPTIONS.map((item) => {
+              const id = `variant-${item}`;
 
-              <label key={index} htmlFor={item}>
-                <input
-                  id={item}
-                  type="radio"
-                  name="variant"
-                  value={item}
-                  checked={variant === item}
-                  onChange={event => {
-                    setVariant(event.target.value)
-                  }}
-                />
-                {item}
-              </label>
-            ))}
+              return (
+                <label key={id} htmlFor={id}>
+                  <input
+                    id={id}
+                    type="radio"
+                    name="variant"
+                    value={item}
+                    checked={variant === item}
+                    onChange={event => {
+                      setVariant(event.target.value)
+                    }}
+                  />
+                  {item}
+                </label>);
+            })}
           </div>
         </div>
 
@@ -67,7 +69,11 @@ function ToastPlayground() {
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <Button>Pop Toast!</Button>
+            <Button
+              onClick={() => {
+                window.alert(`${variant} - ${message}`)
+              }}
+            >Pop Toast!</Button>
           </div>
         </div>
       </div>
