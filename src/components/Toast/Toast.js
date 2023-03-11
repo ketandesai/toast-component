@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   AlertOctagon,
@@ -6,10 +6,10 @@ import {
   CheckCircle,
   Info,
   X,
-} from 'react-feather';
-import { ToastContext } from '../ToastProvider/ToastProvider';
-import VisuallyHidden from '../VisuallyHidden';
-import styles from './Toast.module.css';
+} from "react-feather";
+import { ToastContext } from "../ToastProvider/ToastProvider";
+import VisuallyHidden from "../VisuallyHidden";
+import styles from "./Toast.module.css";
 
 const ICONS_BY_VARIANT = {
   notice: Info,
@@ -18,8 +18,8 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({id, variant, children}) {
-  const {removeToast} = React.useContext(ToastContext);
+function Toast({ id, variant, children }) {
+  const { removeToast } = React.useContext(ToastContext);
 
   const IconTag = ICONS_BY_VARIANT[variant];
   return (
@@ -28,13 +28,20 @@ function Toast({id, variant, children}) {
         <IconTag size={24} />
       </div>
       <p className={styles.content}>
+        <VisuallyHidden>{variant} -</VisuallyHidden>
         {children}
       </p>
-      <button className={styles.closeButton}>
-        <X size={24} onClick={()=>{
-          removeToast(id);
-        }}/>
-        <VisuallyHidden>Dismiss message</VisuallyHidden>
+      <button
+        className={styles.closeButton}
+        aria-label="Dismiss message"
+        aria-live="off"
+      >
+        <X
+          size={24}
+          onClick={() => {
+            removeToast(id);
+          }}
+        />
       </button>
     </div>
   );
