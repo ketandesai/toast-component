@@ -14,12 +14,8 @@ function ToastPlayground() {
   
   function handleCreateToast(event) {
     event.preventDefault();
-    const toast = {
-      id: crypto.randomUUID(),
-      message: message,
-      variant: variant,
-    };
-    createToast(toast);
+    createToast(message, variant);
+    
     setMessage("");
     setVariant(VARIANT_OPTIONS[0]);
   }

@@ -7,8 +7,6 @@ import styles from "./ToastShelf.module.css";
 function ToastShelf() {
   const {toastList} = React.useContext(ToastContext);
   
-  console.log({toastList});
-    
   return (
     <ol className={styles.wrapper}>
       {toastList?.map((toast) => (

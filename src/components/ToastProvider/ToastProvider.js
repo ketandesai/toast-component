@@ -10,7 +10,13 @@ function ToastProvider({ children }) {
     setToastList(nextToastList);
   }
 
-  function createToast(toast) {
+  function createToast(message, variant) {
+    const toast = {
+      id: crypto.randomUUID(),
+      message: message,
+      variant: variant,
+    };
+    
     let nextToastList = [...toastList, toast];
     setToastList(nextToastList);
   }
