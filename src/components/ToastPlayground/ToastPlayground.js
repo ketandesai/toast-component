@@ -4,20 +4,25 @@ import Button from "../Button";
 import ToastShelf from "../ToastShelf/ToastShelf";
 
 import styles from "./ToastPlayground.module.css";
-
+import { ToastContext } from "../ToastProvider/ToastProvider";
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
-  const [message, setMessage] = React.useState("");
-  const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
-  const [toastList, setToastList] = React.useState([]);
+  const {handleCreateToast} = React.useContext(ToastContext);
+  const {handleRemoveToast} = React.useContext(ToastContext);
+  const {toastList} = React.useContext(ToastContext);
+  const {setMessage} = React.useContext(ToastContext);
+  const {setVariant} = React.useContext(ToastContext);
+  //const [message, setMessage] = React.useState("");
+  //const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
+  //const [toastList, setToastList] = React.useState([]);
 
-  function handleRemoveToast(id) {
-    let nextToastList = toastList.filter((toast) => toast.id !== id);
-    setToastList(nextToastList);
-  }
+  //function handleRemoveToast(id) {
+  //  let nextToastList = toastList.filter((toast) => toast.id !== id);
+  //  setToastList(nextToastList);
+ // }
 
-  function handleCreateToast(event) {
+  /*(function handleCreateToast(event) {
     event.preventDefault();
     const toast = {
       id: crypto.randomUUID(),
@@ -28,7 +33,7 @@ function ToastPlayground() {
     setToastList(nextToastList);
     setMessage("");
     setVariant(VARIANT_OPTIONS[0]);
-  }
+  }*/
 
   return (
     <form className={styles.wrapper} onSubmit={handleCreateToast}>
