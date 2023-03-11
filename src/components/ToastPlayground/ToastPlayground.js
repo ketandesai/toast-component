@@ -16,18 +16,19 @@ function ToastPlayground() {
     <form className={styles.wrapper} onSubmit={event => {
       event.preventDefault();
       const toast = {
+        id: crypto.randomUUID(),
         message: message,
         variant: variant
       };
-      let toastList = [...toastList, toast];
-      setToastList(toastList);
+      let nextToastList = [...toastList, toast];
+      setToastList(nextToastList);
     }}>
       <header>
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
 
-      <ToastShelf toastList={toastList}/>
+      <ToastShelf toastList={toastList} setToastList={setToastList}/>
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
